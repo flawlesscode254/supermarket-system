@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SuperMarket System</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <style>
+    #main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    input {
+      border: 2px solid;
+      border-radius: 4px;
+      font-size: 1rem;
+      margin: 0.25rem;
+      min-width: 125px;
+      padding: 0.5rem;
+      transition: border-color 0.5s ease-out;
+    }
+    input:optional {
+      border-color: gray;
+    }
+    input:required:valid {
+      border-color: green;
+    }
+    input:invalid {
+      border-color: red;
+    }
+    input:required:focus:valid {
+      background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg")
+        no-repeat 95% 50% lightgreen;
+      background-size: 25px;
+    }
+    input:focus:invalid {
+      background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg")
+        no-repeat 95% 50% lightsalmon;
+      background-size: 25px;
+    }
+    h1 {
+      text-align: center;
+    }
+    h3 {
+      color: rgb(42, 42, 214);
+    }
+    button {
+      color: white;
+      border-radius: 15px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      outline: none;
+      border: none;
+      margin-top: 15px;
+      background-color: rgb(3, 109, 3);
+      cursor: pointer;
+    }
+    #next {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: 2px solid black;
+    }
+    p {
+      color: orangered;
+    }
+    #area {
+      display: none;
+      pointer-events: none;
+    }
+  </style>
+  <script>
+    function goNext() {
+      let a = document.getElementById("area")
+      let b = document.getElementById("main")
+      b.style.display = "none"
+      b.style.pointerEvents = "none"
+      a.style.display = "block"
+      a.style.pointerEvents = "all"
+      let c = document.getElementById("item_name").value
+      let d = document.getElementById("item_price").value
+      let e = document.getElementById("title")
+      let f = document.getElementById("content")
+      e.innerHTML = c
+      f.innerHTML = d
+    }
+    function makeSticker() {
+      window.print()
+    }
+  </script>
+  <body>
+    <div>
+      <div id="main">
+        <h1>Enter the following details to generate a sticker</h1>
+        <h3>Enter Item Name</h3>
+        <input id="item_name" type="text" placeholder="Enter item name..." />
+        <h3>Enter Item Price</h3>
+        <input id="item_price" type="text" placeholder="Enter item price..." />
+        <button onclick="goNext()">Generate Sticker</button>
+      </div>
+
+      <div id="area">
+        <div id="next">
+          <h2 id="title"></h2>
+          <p id="content"></p>
+        </div>
+        <button onclick="makeSticker()">Print Sticker</button>
+      </div>
+    </div>
+  </body>
+</html>
